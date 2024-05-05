@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 
 struct waster {
     int gg;
@@ -16,30 +17,26 @@ void *newnode () {
     return new; 
 }
 
-int llist (uint64_t count, struct waster *wr1) {
+struct waster *llist (uint64_t count) {
     
-    wr1->gg = 0; // Assign 0 to first node
-    wr1->next = newnode(); // Create new node and make next point to it
-    struct waster *save = wr1->next; // Save that address
+    struct waster *wr1 = malloc(sizeof(struct waster));
+    struct waster *head = wr1;
+    for (uint64_t i = 0 ; i < count ; i++) {
 
-
-    for (uint64_t i = 1 ; i < count ; i++) {
-
-        save->gg = i; // Assing data to next node
-        save->next = newnode(); // Make new node and assign address of the new node to the current one
-        save = save->next; // Make save point to the next node
+        wr1->gg = i; 
+        wr1->next = newnode(); // Make new node and assign address of the new node to the current one
+        wr1 = wr1->next; // Make save point to the next node
         
     }
-    save->next = NULL; 
 
-    return 0;
+    wr1->next = NULL;
+    return head;
 }
 
 void freellist(struct waster *wr1) {
-
+    //printf("freelist \n");
     struct waster *save;
-
-    while (wr1->next != NULL) {
+    while (wr1 != NULL) {
         save = wr1;
         wr1 = wr1->next;
         free(save);
@@ -48,13 +45,12 @@ void freellist(struct waster *wr1) {
 
 int main () {
 
-    struct waster wr1;
-    llist(5, &wr1);
-    struct waster *p = &wr1;
-    for ( ; p->next != NULL ; p = p->next) {
+    struct waster *wr1 = llist(10);
+    struct waster *p;
+    for (p = wr1 ; p->next != NULL ; p = p->next) {
         printf("%d\n", p->gg);
     }
 
-    freellist(&wr1);
+    freellist(wr1);
     return 0;
 }
