@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-// singly linked list demo
+// circular singly linked list demo
 
 struct waster {
     int gg;
@@ -27,7 +27,7 @@ struct waster *llist (uint64_t count) {
 
         wr1->gg = i; 
         if (i == count-1) {
-	    wr1->next = NULL;
+	    wr1->next = head;
 	} else {
 	    wr1->next = newnode(); // Make new node and assign address of the new node to the current one
         }
@@ -35,14 +35,15 @@ struct waster *llist (uint64_t count) {
         
     }
 
-    wr1 = NULL;
+
     return head;
 }
 
 void freellist(struct waster *wr1) {
     //printf("freelist \n");
+    struct waster *head = wr1;
     struct waster *save;
-    while (wr1 != NULL) {
+    while (wr1->next != head) {
         save = wr1;
         wr1 = wr1->next;
         free(save);
@@ -50,13 +51,24 @@ void freellist(struct waster *wr1) {
 }
 
 int main () {
-
-    struct waster *wr1 = llist(20);
-    struct waster *p;
-    for (p = wr1 ; p != NULL ; p = p->next) {
-        printf("\n------%p----------", (void*)p);
-	printf("\ndata: %d\nnext: %p\n", p->gg, (void*)p->next);
-	printf("-----------------------------\n");
+    
+    uint64_t passes = 4; // 1 pass = the whole linked list. So 4 passes would be to print the linked list 4 times.
+    uint64_t passstep = 1; // counter to compare to passes
+    uint64_t steps = 20; // amount of nodes to create
+    struct waster *wr1 = llist(steps); // Create the nodes
+    
+    while(passstep != passes) {
+        
+	
+	uint64_t steps_count = 0;  
+	struct waster *p;
+	for (p = wr1 ; steps_count < steps ; p = p->next, steps_count++) {
+            printf("\n------%p----------", (void*)p);
+	    printf("\ndata: %d\nnext: %p\n", p->gg, (void*)p->next);
+	    printf("-----------------------------\n");
+        }
+	printf("\npass %lld done\n", passstep);
+        passstep = passstep+1;
     }
     printf("\nHEAD: %p\n", (void*)wr1);
     freellist(wr1);

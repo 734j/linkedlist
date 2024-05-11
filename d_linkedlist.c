@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-// Singly linked list demo
+// doubly linked list demo
 
 struct waster {
     int gg;
