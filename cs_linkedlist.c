@@ -57,7 +57,7 @@ int main () {
     uint64_t steps = 20; // amount of nodes to create
     struct waster *wr1 = llist(steps); // Create the nodes
     
-    while(passstep != passes) {
+    while(passstep < passes+1) {
         
 	
 	uint64_t steps_count = 0;  

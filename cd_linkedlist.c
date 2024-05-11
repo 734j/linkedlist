@@ -63,17 +63,26 @@ void freellist(struct waster *wr1) {
 }
 
 int main () {
-
-    struct waster *wr1 = llist(20);
-    struct waster *p;
-    for (p = wr1 ; p != NULL ; p = p->next) {
-        void *prev = (void*)p->prev;
-	void *next = (void*)p->next;
-	printf("\n------%p----------",(void *)p);
-	printf("\ndata: %d\nprev: %p\nnext: %p\n", p->gg, prev, next);
-	printf("-----------------------------\n");
-    }
     
+    uint64_t passes = 4;
+    uint64_t passstep = 1;
+    uint64_t steps = 20;
+    struct waster *wr1 = llist(steps);
+    struct waster *p;
+    
+    while(passstep < passes+1) {
+        uint64_t steps_count = 0;
+        for (p = wr1 ; steps_count < steps ; p = p->next, steps_count++) {
+            void *prev = (void*)p->prev;
+	    void *next = (void*)p->next;
+	    printf("\n------%p----------",(void *)p);
+	    printf("\ndata: %d\nprev: %p\nnext: %p\n", p->gg, prev, next);
+	    printf("-----------------------------\n");
+        }
+        printf("\npass %lld done\n", passstep);
+        passstep = passstep+1;
+    }
+    printf("\nHEAD: %p\n", (void*)wr1);
     freellist(wr1);
     return 0;
 }
