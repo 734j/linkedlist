@@ -1,6 +1,6 @@
-CC=egcc
+CC=cc
 CFLAGS_TESTBIN=-O3 -Wfatal-errors -Wall -Werror -Wextra -g -Wpedantic -std=c99
-CFLAGS=-O3 -flto -march=native -DNDEBUG -fomit-frame-pointer -s -std=gnu99
+CFLAGS=-O3 -flto -march=native -DNDEBUG -fomit-frame-pointer -s -std=c99
 TARGET1=s_linkedlist
 TARGET2=d_linkedlist
 TARGET3=cs_linkedlist

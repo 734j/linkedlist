@@ -13,7 +13,7 @@ struct waster {
     struct waster *next;
 };
 
-struct waster *newnode () {
+struct waster *newnode (void) {
 
     struct waster *new = malloc(sizeof(struct waster));
     return new; 
@@ -49,7 +49,7 @@ void freellist(struct waster *wr1) {
     }
 }
 
-int main () {
+int main (void) {
 
     struct waster *wr1 = llist(20);
     struct waster *p;
