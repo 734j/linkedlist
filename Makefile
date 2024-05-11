@@ -33,7 +33,7 @@ release:
 	$(CC) $(CFLAGS) $(SRCSL) -o $(TARGET1)
 	$(CC) $(CFLAGS) $(SRCDL) -o $(TARGET2)
 	$(CC) $(CFLAGS) $(SRCCSL) -o $(TARGET3)
-	$(CC) $(CFLAGS) $(SRCCSL) -o $(TARGET4)
+	$(CC) $(CFLAGS) $(SRCCDL) -o $(TARGET4)
 	
 
 	
