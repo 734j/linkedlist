@@ -79,7 +79,7 @@ int main (void) {
 	    printf("\ndata: %d\nprev: %p\nnext: %p\n", p->gg, prev, next);
 	    printf("-----------------------------\n");
         }
-        printf("\npass %lld done\n", passstep);
+        printf("\npass %ld done\n", passstep);
         passstep = passstep+1;
     }
     printf("\nHEAD: %p\n", (void*)wr1);
