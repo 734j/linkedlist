@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-// circular doubly linked list demo
+// circular doubly linked list demo hej hej
 
 struct waster {
     int gg;
